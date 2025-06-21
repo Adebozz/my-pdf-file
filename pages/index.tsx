@@ -1,15 +1,10 @@
 import { useState } from 'react'
-import { Box, Heading, Button, useToast } from '@chakra-ui/react'
+import { Box, Button, Heading, useToast, VStack } from '@chakra-ui/react'
+import FileUploader from '../components/FileUploader'
 
 export default function Home() {
   const [file, setFile] = useState<File | null>(null)
   const toast = useToast()
-
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files?.[0]) {
-      setFile(e.target.files[0])
-    }
-  }
 
   const handleConvert = async () => {
     if (!file) return
@@ -23,28 +18,21 @@ export default function Home() {
     })
 
     if (res.ok) {
-      toast({
-        title: 'PDF converted!',
-        status: 'success',
-        duration: 3000,
-      })
-      // handle preview...
+      toast({ title: 'PDF converted!', status: 'success' })
     } else {
-      toast({
-        title: 'Conversion failed.',
-        status: 'error',
-        duration: 3000,
-      })
+      toast({ title: 'Conversion failed.', status: 'error' })
     }
   }
 
   return (
-    <Box p={8}>
-      <Heading mb={4}>PDF Converter</Heading>
-      <input type="file" accept="application/pdf" onChange={handleFileChange} />
-      <Button onClick={handleConvert} mt={4} colorScheme="teal">
-        Convert PDF
-      </Button>
+    <Box p={8} position="relative" minH="100vh">
+      <VStack spacing={6}>
+        <Heading>PDF Converter</Heading>
+        <FileUploader onFileAccepted={setFile} />
+        <Button onClick={handleConvert} colorScheme="teal" isDisabled={!file}>
+          Convert PDF
+        </Button>
+      </VStack>
     </Box>
   )
 }
