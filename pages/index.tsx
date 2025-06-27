@@ -42,14 +42,14 @@ export default function Home() {
       </Box>
 
       {/* Background sparkles */}
-      <Box position="absolute" inset="0" zIndex={0}>
+      <Box position="absolute" top={0} left={0} height="100vh" width="200vw" zIndex={0}>
         <SparklesCore
           id="tsparticlesfullpage"
           background="transparent"
           minSize={0.6}
           maxSize={1.4}
           particleDensity={100}
-          className=" "
+          className="w-full h-full"
           particleColor={colorMode === 'dark' ? '#FFFFFF' : '#000000'}
         />
       </Box>
