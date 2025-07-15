@@ -3,7 +3,7 @@ import React from 'react'
 const PDFPreview = () => {
   return (
     <div>
-      this is my pdf file 
+      This is my pdf file. view file below
     </div>
   )
 }
