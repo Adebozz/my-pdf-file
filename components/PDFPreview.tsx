@@ -4,7 +4,7 @@ const PDFPreview = () => {
   return (
     <div>
       This is my pdf file. 
-      <a href="http://">Preview pdf </a>
+      <a href="http://">Preview pdf file</a>
     </div>
   )
 }
